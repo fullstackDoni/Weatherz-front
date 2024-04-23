@@ -32,13 +32,12 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ weather.name }},  {{ weather.sys.country }}</h5>
-          <p class="card-text">{{ weather.weather[0].description }}</p>
+          <h5 class="card-title">{{ weather.city}},  {{ weather.country }}</h5>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Температура: {{ weather.main.temp }} °C</li>
-          <li class="list-group-item">Влажность: {{ weather.main.humidity }}%</li>
-          <li class="list-group-item">Скорость ветра: {{ weather.wind.speed }} m/s</li>
+          <li class="list-group-item">Температура: {{ weather.temperature }} °C</li>
+          <li class="list-group-item">Влажность: {{ weather.humidity }}%</li>
+          <li class="list-group-item">Скорость ветра: {{ weather.windSpeed }} m/s</li>
         </ul>
       </div>
     </div>

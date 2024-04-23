@@ -1,15 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
+import {Apollo} from "apollo-angular";
+import {gql} from "@apollo/client";
 
+interface WeatherResponse {
+  getWeatherByCityName: {
+    city: string;
+    country: string;
+    temperature: number;
+    humidity: number;
+    windSpeed: number;
+  };
+}
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
-  constructor(private http: HttpClient) { }
+  constructor(private apollo: Apollo) { }
 
-  getWeather(city: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/weather?city=${city}`);
+  getWeatherByCityName(city: string): Observable<WeatherResponse> {
+    return this.apollo.watchQuery<WeatherResponse>({
+      query: gql`
+        query GetWeatherByCityName($city: String!) {
+          getWeatherByCityName(city: $city) {
+            city
+            country
+            temperature
+            humidity
+            windSpeed
+          }
+        }
+      `,
+      variables: {
+        city
+      }
+    }).valueChanges.pipe(
+      map(result => result.data)
+    );
   }
 }
 

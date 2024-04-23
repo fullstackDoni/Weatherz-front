@@ -9,7 +9,7 @@ import { graphqlProvider } from './graphql.provider';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(), provideHttpClient(), provideHttpClient(), graphqlProvider,
+    provideHttpClient(), provideHttpClient(), graphqlProvider,
 
   ]
 };
