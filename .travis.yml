@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  front:
+    build: ./front
+    ports:
+      - "80:80"
+    environment:
+      - API_URL=http://back:3000/graphql
